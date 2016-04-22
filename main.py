@@ -23,10 +23,13 @@ while running:
     for e in event.get():
         if e.type == QUIT:
             running = False
-        if e.type == MOUSEBUTTONDOWN:
-        	if e.button == 4:
+        if e.type == KEYDOWN:
+            if e.key == K_ESCAPE:
+                running = False 
+        if e.type == MOUSEBUTTONDOWN: 
+        	if e.button == 4: # Increases the radius of the drawing utensil
         		radius += 1
-        	if e.button == 5:
+        	if e.button == 5 and radius > 1: # Decreases the radius of the drawing utensil
         		radius -= 1
         if e.type == KEYDOWN:
             running = False
@@ -68,8 +71,6 @@ while running:
             y = dy/dist
             for i in range(int(dist)):
                 draw.circle(screen, (255, 255, 255), (int(ox+i*x), int(oy+i*y)), radius//2) # drawing the circle at every pixel
-
-
 
     display.flip()
 quit()
